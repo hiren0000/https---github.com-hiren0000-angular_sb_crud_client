@@ -26,8 +26,10 @@ export class AddUserComponent implements OnInit {
   }
 
   save() {
-    this.userService
-    .createUser(this.user).subscribe({
+    
+    this.userService.createUser(this.user).subscribe
+    ({
+     
       next: (data) => {
       console.log(data)
       this.user = new User();
@@ -35,17 +37,19 @@ export class AddUserComponent implements OnInit {
     }, 
 
     error:(error) => {console.log(error)}  
+
    });
   
   }
 
   onSubmit() {
     this.submitted = true;
-    this.save();    
+    this.save(); 
+
   }
 
   gotoList() {
-    this.router.navigate(['/users']);
+    this.router.navigate(['users']);
   }
 
 }

@@ -17,26 +17,44 @@ export class ListUsersComponent implements OnInit
   constructor(private userService: UserService,
     private router: Router) {}
 
-  ngOnInit() {
-    this.reloadData();
+  ngOnInit() 
+  {
+    let resp = this.userService.getUsersList();
+   
+    resp.subscribe({
+      next: (data)=>{
+        this.users=data;
+        console.log(this.users);
+      },
+      error: error=>
+      {
+        console.log(error);
+
+      }
+      
+
+    });
   }
 
-  reloadData() {
+ /* reloadData() 
+  {
     this.users = this.userService.getUsersList();
   }
+*/
 
-  deleteUser(Id: number) {
-    this.userService.deleteUser(Id)
-      .subscribe(
-        data => {
+ /* deleteUser(Id: number) 
+  {
+    this.userService.deleteUser(Id).subscribe({
+       next: (data) => {
           console.log(data);
           this.reloadData();
         },
-        error => console.log(error));
+        error: (error) => console.log(error)
+      });
   }
 
   UserDetails(Id: number){
     this.router.navigate(['details', Id]);
   }
-
+*/
 }
