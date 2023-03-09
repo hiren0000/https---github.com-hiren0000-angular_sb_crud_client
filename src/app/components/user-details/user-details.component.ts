@@ -14,27 +14,28 @@ export class UserDetailsComponent implements OnInit
   Id!: number;
   user!: User;
 
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute, private router: Router,
     private userService: UserService) { }
 
   ngOnInit() {
     this.user = new User();
     
-    this.Id = this.route.snapshot.params['Id'];
+    this.Id = this.route.snapshot.params['id'];
     
     this.userService.getUser(this.Id)
       .subscribe({
         next: (data) => {
         console.log(data)
         this.user = data;
+      
       },
       error: (error) => {console.log(error)}
     });
   }
 
- // list(){
-   // this.router.navigate(['users']);
- // }
+ list(){
+   this.router.navigate(['users']);
+ }
 }
 
 

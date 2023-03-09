@@ -12,49 +12,80 @@ import { User } from 'src/user';
 
 export class ListUsersComponent implements OnInit
 {
-   users!: Observable<User[]>;
+   users:any = [];
 
   constructor(private userService: UserService,
     private router: Router) {}
 
   ngOnInit() 
   {
-    let resp = this.userService.getUsersList();
+    // let resp = this.userService.getUsersList();
    
-    resp.subscribe({
-      next: (data)=>{
-        this.users=data;
-        console.log(this.users);
-      },
-      error: error=>
-      {
-        console.log(error);
+    // resp.subscribe({
+    //   next: (data)=>{
+    //     this.users=data;
+    //     console.log(this.users);
+    //   },
+    //   error: error=>
+    //   {
+    //     console.log(error);
 
-      }
+    //   }
       
 
+    // });
+
+
+    this.userService.getUsersList().subscribe((res:any) => {
+      console.log('RESS', res);
+      this.users= res; 
+      
+    },
+    error => {
+      console.log("@error", error);
     });
+
   }
 
- /* reloadData() 
+ /*----- Once list started dont forget about adding update funtions 
+ 
+ reloadData() 
   {
     this.users = this.userService.getUsersList();
   }
 */
 
- /* deleteUser(Id: number) 
+  deleteUser(Id: number) 
   {
     this.userService.deleteUser(Id).subscribe({
        next: (data) => {
           console.log(data);
-          this.reloadData();
+          this.list();
+          
         },
         error: (error) => console.log(error)
       });
   }
 
-  UserDetails(Id: number){
-    this.router.navigate(['details', Id]);
+  userDetails(id: number){
+    console.log("trying to fetch the specific records details");
+    this.router.navigate(['details', id]);
+   
+    
   }
-*/
+
+
+  updateUser(id: number)
+  {
+    console.log("tryting to use update function")
+    this.router.navigate(['update-user', id]);
+  }
+
+  list()
+  {
+    this.router.navigate(['users']);
+  }
+
+
+
 }

@@ -12,8 +12,8 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   //get signle user by id 
-  getUser(Id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/${Id}`);
+  getUser(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${id}`);
   } 
 
   //creating new user 
@@ -22,13 +22,13 @@ export class UserService {
   }
 
   //updating existing user
-  updateUser(Id: number, value: any): Observable<Object> {
-    return this.http.put(`${this.baseUrl}/update-user/${Id}`, value);
+  updateUser(id: number, value: any): Observable<Object> {
+    return this.http.put(`${this.baseUrl}/update-user/${id}`, value);
   }
 
   //deletting existing user
-  deleteUser(Id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/delete-user/${Id}`, { responseType: 'text' });
+  deleteUser(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/delete-user/${id}`, { responseType: 'text' });
   }
 
   //get list of users

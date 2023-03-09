@@ -9,13 +9,15 @@ import { ListUsersComponent } from './components/list-users/list-users.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { UpdateUsersComponent } from './components/update-users/update-users.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddUserComponent,
     UserDetailsComponent,
-    ListUsersComponent
+    ListUsersComponent,
+    UpdateUsersComponent
   ],
   imports: [
     BrowserModule,
