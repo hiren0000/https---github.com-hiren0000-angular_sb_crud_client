@@ -55,12 +55,13 @@ export class ListUsersComponent implements OnInit
   }
 */
 
-  deleteUser(Id: number) 
+  deleteUser(id: number) 
   {
-    this.userService.deleteUser(Id).subscribe({
+    this.userService.deleteUser(id).subscribe({
        next: (data) => {
           console.log(data);
           this.list();
+          this.user_li();
           
         },
         error: (error) => console.log(error)
@@ -82,6 +83,12 @@ export class ListUsersComponent implements OnInit
   }
 
   list()
+  {
+    this.userService.getUsersList();
+  }
+
+  //just to work here after deletation it should give me refreshed page with actual data
+  user_li()
   {
     this.router.navigate(['users']);
   }
